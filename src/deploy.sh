@@ -26,4 +26,4 @@ popd
 # lets prepare web app image
 docker build -f webapp.Dockerfile -t $ACR_NAME.azurecr.io/acc-sample-webapp:latest . && \
 az acr login --name $ACR_NAME && \
-docker push $ACR_NAME.azurecr.io/acc-sample-webapp:latest &&
+docker push $ACR_NAME.azurecr.io/acc-sample-webapp:latest
