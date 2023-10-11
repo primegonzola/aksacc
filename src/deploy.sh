@@ -5,9 +5,9 @@ AKS_NAMESPACE="${3}"
 ACR_NAME="${4}"
 
 APP_IMAGE_NAME="acc-sample-webapp"
-APP_IMAGE_NAME_FQDN=${APP_IMAGE_NAME}.azurecr.io/${APP_IMAGE_NAME}:latest
+APP_IMAGE_NAME_FQDN=${ACR_NAME}.azurecr.io/${APP_IMAGE_NAME}:latest
 ATTESTATION_IMAGE_NAME="acc-attestation-reporter"
-ATTESTATION_IMAGE_NAME_FQDN=${ATTESTATION_IMAGE_NAME}.azurecr.io/${ATTESTATION_IMAGE_NAME}:latest
+ATTESTATION_IMAGE_NAME_FQDN=${ACR_NAME}.azurecr.io/${ATTESTATION_IMAGE_NAME}:latest
 
 # clean up
 rm -rf ../cccvma
