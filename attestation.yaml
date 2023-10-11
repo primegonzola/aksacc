@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: acc-attestation-checker
+  labels:
+    app: acc-attestation-checker
+spec:
+  restartPolicy: Never
+  containers:
+  - image: mcr.microsoft.com/acc/samples/cvm-attestation:1.1
+    imagePullPolicy: Always
+    name: acc-attestation-checker
+    volumeMounts:
+      - mountPath: /sys/kernel/security
+        name: tcg
+      - mountPath: /dev/tpmrm0
+        name: tpmrm
+    securityContext:
+      privileged: true
+  nodeSelector:
+    kubernetes.azure.com/security-type: ConfidentialVM
+  volumes:
+    - name: tcg
+      hostPath:
+        path: /sys/kernel/security
+    - name: tpmrm0
+      hostPath:
+        path: /dev/tpmrm0
