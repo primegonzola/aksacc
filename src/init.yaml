@@ -32,7 +32,7 @@ spec:
         mountPath: /logs
   containers:
   - image: <APP_IMAGE_NAME>
-    name: acc-sample-webapp
+    name: <APP_NAME>
     imagePullPolicy: Always
     volumeMounts:
       - name: logs
