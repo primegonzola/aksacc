@@ -47,10 +47,11 @@ cat ./init.yaml | sed \
     -e "s|<APP_IMAGE_NAME>|${APP_IMAGE_NAME_FQDN}|" \
     -e "s|<ATTESTATION_IMAGE_NAME>|${ATTESTATION_IMAGE_NAME_FQDN}|" | kubectl apply -n ${AKS_NAMESPACE} -f -
 
+# inspect locally if needed
+echo "To debug locally execute following command:\n"
+echo "kubectl exec --stdin --tty ${APP_NAME}  -n ${AKS_NAMESPACE} -- /bin/bash"
+
 # check if service and pod are running
 kubectl get service -n ${AKS_NAMESPACE}
 kubectl get pods -n ${AKS_NAMESPACE} -w
 
-# inspect locally if needed
-echo "To debug locally execute following command:\n"
-echo "kubectl exec --stdin --tty ${APP_NAME}  -n ${AKS_NAMESPACE} -- /bin/bash"
