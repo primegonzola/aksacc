@@ -17,7 +17,7 @@ metadata:
     app: acc-sample-webapp
 spec:
   containers:
-  - image: <image-name>
+  - image: <APP_IMAGE_NAME>
     imagePullPolicy: Always
     name: acc-sample-webapp
   nodeSelector:
