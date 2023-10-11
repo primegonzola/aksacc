@@ -24,7 +24,7 @@ pushd .. &&
 # lets prepare cvm attestation image
 pushd ../cccvma &&
     cp ../src/cvm-attestation.Dockerfile ./aks-linux-sample &&
-    cp ../src/get-attestation-report.sh . &&
+    cp ../src/get-attestation-report.sh ./aks-linux-sample  &&
     docker build -f ./aks-linux-sample/cvm-attestation.Dockerfile -t $ACR_NAME.azurecr.io/${ATTESTATION_IMAGE_NAME}:latest . &&
     az acr login --name $ACR_NAME &&
     docker push $ACR_NAME.azurecr.io/${ATTESTATION_IMAGE_NAME}:latest &&
