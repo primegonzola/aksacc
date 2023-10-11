@@ -22,3 +22,9 @@ docker build -f ./aks-linux-sample/cvm-attestation.Dockerfile -t $ACR_NAME.azure
 az acr login --name $ACR_NAME && \
 docker push $ACR_NAME.azurecr.io/acc-attestation-reporter:latest && \
 popd
+
+# lets prepare web app image
+docker build -f webapp.Dockerfile -t $ACR_NAME.azurecr.io/acc-sample-webapp:latest . && \
+az acr login --name $ACR_NAME && \
+docker push $ACR_NAME.azurecr.io/acc-sample-webapp:latest && \
+popd
