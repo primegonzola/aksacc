@@ -49,7 +49,7 @@ cat ./init.yaml | sed \
 
 # check if service and pod are running
 kubectl get service -n ${AKS_NAMESPACE}
-kubectl get pods -n ${AKS_NAMESPACE}
+kubectl get pods -n ${AKS_NAMESPACE} -w
 
 # inspect locally if needed
 echo "To debug locally execute following command:\n"
