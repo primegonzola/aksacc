@@ -1,8 +1,9 @@
 #!/bin/bash
-AKS_CLUSTER_NAME="${1}"
-ASK_POOL_NAME="${2}"
-AKS_NAMESPACE="${3}"
-ACR_NAME="${4}"
+AKS_RESOURCE_GROUP="${1}"
+AKS_CLUSTER_NAME="${2}"
+AKS_POOL_NAME="${3}"
+AKS_NAMESPACE="${4}"
+ACR_NAME="${5}"
 
 APP_NAME="acc-sample-webapp"
 APP_IMAGE_NAME="acc-sample-webapp"
@@ -12,6 +13,9 @@ ATTESTATION_IMAGE_NAME_FQDN=${ACR_NAME}.azurecr.io/${ATTESTATION_IMAGE_NAME}:lat
 
 # clean up
 rm -rf ../cccvma
+
+# set current aks context
+az aks get-credentials --resource-group ${AKS_RESOURCE_GROUP} --name ${AKS_CLUSTER_NAME}
 
 # clone the attestation repo
 pushd .. &&
@@ -45,6 +49,7 @@ kubectl create namespace ${AKS_NAMESPACE}
 cat ./init.yaml | sed \
     -e "s|<APP_NAME>|${APP_NAME}|" \
     -e "s|<APP_IMAGE_NAME>|${APP_IMAGE_NAME_FQDN}|" \
+    -e "s|<AKS_POOL_NAME>|${AKS_POOL_NAME}|" \
     -e "s|<ATTESTATION_IMAGE_NAME>|${ATTESTATION_IMAGE_NAME_FQDN}|" | kubectl apply -n ${AKS_NAMESPACE} -f -
 
 # inspect locally if needed
